@@ -14,4 +14,4 @@ EXPOSE      8200
 VOLUME      ["/data"]
 WORKDIR     /data
 ENTRYPOINT  ["/usr/bin/vault"]
-CMD         ["-server"]
+CMD         ["-h"]
