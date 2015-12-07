@@ -7,7 +7,7 @@ RUN apk add --update -t build-deps wget unzip \
     && mv vault /usr/bin/vault \
     && chmod +x /usr/bin/vault \
     && mkdir /data \
-    && groupadd vault \
+    && addgroup vault \
     && adduser -s /bin/false -G minio -S -D minio \
     && apk del --purge build-deps \
     && rm -rf /var/cache/apk/*
