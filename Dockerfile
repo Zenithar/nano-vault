@@ -2,14 +2,17 @@ FROM alpine:latest
 MAINTAINER Thibault NORMAND <me@zenithar.org>
 
 RUN apk add --update -t build-deps wget unzip \
-    && wget --no-check-certificate https://dl.bintray.com/mitchellh/vault/vault_0.2.0_linux_amd64.zip \
-    && unzip vault_0.2.0_linux_amd64.zip \
+    && wget --no-check-certificate https://dl.bintray.com/mitchellh/vault/vault_0.3.1_linux_amd64.zip \
+    && unzip vault_0.3.1_linux_amd64.zip \
     && mv vault /usr/bin/vault \
     && chmod +x /usr/bin/vault \
     && mkdir /data \
+    && groupadd vault \
+    && adduser -s /bin/false -G minio -S -D minio \
     && apk del --purge build-deps \
     && rm -rf /var/cache/apk/*
 
+USER        vault
 EXPOSE      8200
 VOLUME      ["/data"]
 WORKDIR     /data
